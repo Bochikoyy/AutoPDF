@@ -44,3 +44,4 @@ def compress_pdf(file_path: Path) -> Tuple[bool, str]:
             except Exception:
                 pass
         return False, str(e)
+
