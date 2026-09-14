@@ -67,6 +67,27 @@ Database + Notification
    python main.py
    ```
 
+## Step-by-Step Usage Guide
+
+### 1. Starting AutoPDF
+1. Open File Explorer and navigate to the `dist` folder.
+2. Double-click **`AutoPDF.exe`**.
+3. The app will launch silently. Check the bottom right of your screen (in the System Tray near the clock) for the AutoPDF icon. This confirms it is running in the background.
+
+### 2. Converting a File
+1. Open your browser or apps like Microsoft Teams.
+2. Download a supported file (like a `.pptx` or `.docx`) into your standard **Downloads** folder.
+3. Don't click anything—just wait a few seconds! 
+4. AutoPDF automatically detects the file, waits for it to finish downloading, and commands Microsoft Office in the background to convert it.
+5. A **Windows Notification** will appear when the conversion is successful.
+6. Check your Downloads folder. You will find your original file untouched, with the new `.pdf` version right next to it!
+
+### 3. Running Automatically on Startup
+If you want AutoPDF to run automatically every time you turn on your computer:
+1. Press `Windows Key + R` to open the Run dialog.
+2. Type `shell:startup` and press Enter. This opens the Windows Startup folder.
+3. Right-click your `AutoPDF.exe` file, choose **Create Shortcut**, and drag that shortcut into the Startup folder.
+
 ## Development
 
 Run tests using pytest:
@@ -76,8 +97,6 @@ pytest tests/
 
 ## Privacy
 
-AutoPDF is entirely offline. No files, metadata, or telemetry are uploaded to any external servers or APIs.
+AutoPDF is entirely offline. No files, metadata, or telemetry are uploaded to any external servers or APIs. All conversions happen entirely on your own local hardware.
 
-## Packaging
 
-To package AutoPDF into a single executable for Windows, PyInstaller is recommended (use `build.spec`).
