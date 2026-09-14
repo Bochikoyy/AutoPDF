@@ -7,6 +7,7 @@ from app.converters.office_converter import OfficeConverter
 from app.core.queue_manager import ConversionQueue
 from app.core.worker import ConversionWorker
 from app.core.watcher import FolderWatcher
+from app.core.settings import SettingsManager
 
 from app.database.database import DatabaseConnection
 from app.database.repository import ConversionRepository
@@ -15,6 +16,8 @@ logger = setup_logger()
 
 def main():
     logger.info("Starting AutoPDF Engine MVP")
+    
+    settings = SettingsManager()
     
     db_conn = DatabaseConnection()
     repository = ConversionRepository(db_conn)
@@ -35,6 +38,10 @@ def main():
     else:
         logger.error(f"Downloads folder not found at: {downloads_dir}")
         
+    # Load initial state from settings
+    is_active = settings.get("is_active", True)
+    watcher.set_active(is_active)
+    
     watcher.start()
     
     # Start PyQt Application
@@ -49,7 +56,8 @@ def main():
         'queue': queue_manager,
         'watcher': watcher,
         'worker': worker,
-        'office_service': office_service
+        'office_service': office_service,
+        'settings': settings
     }
     
     window = MainWindow(app_context)
