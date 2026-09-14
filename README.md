@@ -37,7 +37,7 @@ Conversion Queue
       ↓
 Background Worker
       ↓
-Converter (LibreOffice / Pillow / FPDF)
+Converter (Microsoft Office COM / Pillow / FPDF)
       ↓
 PDF
       ↓
@@ -49,7 +49,7 @@ Database + Notification
 ### Prerequisites
 - Windows 10 or 11
 - Python 3.12+
-- **LibreOffice:** Must be installed in a standard location (`C:\Program Files\LibreOffice`) for Office document conversions.
+- **Microsoft Office:** Word, PowerPoint, and Excel must be installed for Office document conversions.
 
 ### Setup
 1. Clone or download the repository.
