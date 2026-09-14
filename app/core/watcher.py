@@ -23,9 +23,13 @@ class AutoPDFEventHandler(FileSystemEventHandler):
         super().__init__()
         self.queue_manager = queue_manager
         self.repository = repository
+        self.is_active = True
         
     def process_file(self, file_path: Path):
         """Validates the file, waits for readiness, and adds to queue."""
+        if not self.is_active:
+            return
+            
         if not is_valid_file(file_path):
             return
             
@@ -75,6 +79,9 @@ class FolderWatcher:
         self.observer = Observer()
         self.event_handler = AutoPDFEventHandler(queue_manager, repository)
         self.watches = {} # path_str: watch
+        
+    def set_active(self, active: bool):
+        self.event_handler.is_active = active
         
     def add_folder(self, folder_path: Path):
         if not folder_path.exists():

@@ -71,6 +71,12 @@ class ConversionWorker(threading.Thread):
             error_msg = "Unsupported file type"
 
         if success:
+            # Phase 8: Compress the output PDF
+            from app.utils.pdf_compressor import compress_pdf
+            comp_success, comp_err = compress_pdf(output_file)
+            if not comp_success:
+                logger.warning(f"Compression failed for {output_file.name}, but PDF was still created. Error: {comp_err}")
+
             logger.info(f"Successfully converted {task.input_file.name} to {output_file.name}")
             show_notification("Conversion Complete", f"Successfully converted {task.input_file.name} to PDF.")
             if task.record_id:

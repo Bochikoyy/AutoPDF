@@ -9,7 +9,7 @@ a = Analysis(
     datas=[
         ('assets', 'assets'),
     ],
-    hiddenimports=['pystray', 'winotify', 'fpdf', 'PySide6'],
+    hiddenimports=['pystray', 'winotify', 'fpdf', 'PySide6', 'pymupdf', 'fitz'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
