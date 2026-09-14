@@ -81,4 +81,3 @@ AutoPDF is entirely offline. No files, metadata, or telemetry are uploaded to an
 ## Packaging
 
 To package AutoPDF into a single executable for Windows, PyInstaller is recommended (use `build.spec`).
-
